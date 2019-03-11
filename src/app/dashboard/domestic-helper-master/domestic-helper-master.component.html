@@ -1,0 +1,125 @@
+<div class="tile">
+    <div class="tile-heading">Domestic Helper Master
+      <a style="float:right" href="javascript:void(0)">
+        <i class="pi pi-refresh"></i> Reload
+      </a>
+    </div>
+    <app-tbl [data]="data" [cols]="cols" [config]="config"></app-tbl>
+  </div>
+  
+  <div class="tc mar-tp-20"><button pButton type="button" class="ui-button-rounded minBtn ttU" label="Add Helper" (click)="openModal(template)"></button></div>
+  
+  <ng-template #template>
+    <div class="modal-header">
+        <h4 class="modal-title">Add Helper</h4>
+        <button type="button" class="close pull-right" aria-label="Close" (click)="modalRef.hide()"><span aria-hidden="true">&times;</span></button>
+    </div>
+    <div class="modal-body">
+        <div class="ui-g mar-tp-20">
+            <div class="ui-g-12 ui-lg-3">
+                <div class="form-group pos-relative">
+                    <label class="rs-dd-label">Category </label>
+                    <p-dropdown [options]="category" [(ngModel)]="selCategory" placeholder="Select" class="rs-dd-100 form-group"></p-dropdown>
+                </div>
+            </div>
+            <div class="ui-g-12 ui-lg-3">
+                <div class="form-group pos-relative">
+                    <label class="rs-dd-label">Attach Photograph</label>
+                    <i _ngcontent-c9="" class="pi pi-upload pi-cus-icon"></i>
+                    <input id="float-input0" type="file" pInputText>
+                </div>
+            </div>
+            <div class="ui-g-12 ui-lg-3">
+                <span class="ui-float-label form-group">
+                    <input id="float-input1" type="text" pInputText>
+                    <label for="float-input1">First Name</label>
+                </span>
+            </div>
+            <div class="ui-g-12 ui-lg-3">
+                <span class="ui-float-label form-group">
+                    <input id="float-input2" type="text" pInputText>
+                    <label for="float-input2">Last Name</label>
+                </span>
+            </div>
+            <div class="ui-g-12 ui-lg-3">
+                <span class="ui-float-label form-group">
+                    <input id="float-input3" type="text" pInputText>
+                    <label for="float-input3">Email</label>
+                </span>
+            </div>
+            <div class="ui-g-12 ui-lg-3">
+                <span class="ui-float-label form-group">
+                    <input id="float-input4" type="text" pInputText>
+                    <label for="float-input4">Mobile/Phone</label>
+                </span>
+            </div>
+            <div class="ui-g-12 ui-lg-3">
+                <span class="ui-float-label form-group">
+                    <input id="float-input5" type="text" pInputText>
+                    <label for="float-input5">Alternate Contact No</label>
+                </span>
+            </div>
+            <div class="ui-g-12 ui-lg-3">
+                <div class="form-group pos-relative">
+                    <label class="rs-dd-label">Attach Id Proof</label>
+                    <i class="pi pi-upload pi-cus-icon"></i>
+                    <input id="float-input6" type="file" pInputText>
+                </div>
+            </div>
+            <div class="ui-g-12 ui-lg-3">
+                <div class="form-group pos-relative">
+                    <label class="rs-dd-label">Attach Address Proof</label>
+                    <i class="pi pi-upload pi-cus-icon"></i>
+                    <input id="float-input7" type="file" pInputText>
+                </div>
+            </div>
+            <div class="ui-g-12 ui-lg-5">
+                <span class="ui-float-label form-group">
+                    <textarea id="float-text1" rows="5" cols="30" pInputTextarea></textarea>
+                    <label for="float-text1">Permanent Address</label>
+                </span>
+            </div>
+            <div class="ui-g-12 ui-lg-4">
+                <span class="ui-float-label form-group">
+                    <textarea id="float-text2" rows="5" cols="30" pInputTextarea></textarea>
+                    <label for="float-text2">Present Address (Leave blank if same as Permanent Address)</label>
+                </span>
+            </div>
+            <div class="ui-g-12 ui-lg-3 pos-relative">
+                <div class="caption">Current Status</div>
+                <ul class="catRadio">
+                <li><p-radioButton name="group2" value="1" label="In"></p-radioButton></li>
+                <li><p-radioButton name="group2" value="2" label="Out"></p-radioButton></li>
+                </ul>
+            </div>
+            <div class="ui-g-12 ui-lg-9">
+                <span class="ui-float-label form-group">
+                    <textarea id="float-text3" rows="5" cols="30" pInputTextarea></textarea>
+                    <label for="float-text3">Notes</label>
+                </span>
+            </div>
+            <div class="ui-g-12 ui-lg-12"><b>Referral Info</b></div>
+            <div class="ui-g-12 ui-lg-3">
+                <span class="ui-float-label form-group">
+                    <input id="float-inputr1" type="text" pInputText>
+                    <label for="float-inputr1">Name</label>
+                </span>
+            </div>
+            <div class="ui-g-12 ui-lg-3">
+                <span class="ui-float-label form-group">
+                    <input id="float-inputr2" type="text" pInputText>
+                    <label for="float-inputr2">Mobile/Phone</label>
+                </span>
+            </div>
+            <div class="ui-g-12 ui-lg-6">
+                <span class="ui-float-label form-group">
+                    <textarea id="float-text4" rows="5" cols="30" pInputTextarea></textarea>
+                    <label for="float-text4">Address</label>
+                </span>
+            </div>
+        </div>
+    </div>
+    <div class="modal-footer">
+        <button pButton type="button" class="ui-button-rounded ttU minBtn" label="Submit" (click)="modalRef.hide()"></button>
+    </div>
+  </ng-template>

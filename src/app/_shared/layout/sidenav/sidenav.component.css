@@ -1,0 +1,20 @@
+/*SideBar Navigation */
+.navbar { background:#1f3042; border:none; border-radius:0; margin-bottom:20px; box-shadow:1px 1px 3px rgba(0, 0, 0, 0.1)}
+.navbar-btn { box-shadow:none; outline:none !important; border:none}
+.line { width:100%; height:1px; border-bottom:1px dashed #ddd; margin:40px 0}
+
+#sidebar { width:250px; position:fixed; top:0; left:-250px; margin-top:50px; height:calc(100vh - 50px); z-index:99999; background:#fff;transition:all 0.3s; overflow-y:auto;}
+#sidebar.active { left:0}
+#sidebar ul.components { padding:20px 0 20px; border-bottom:1px solid #1f3042}
+#sidebar ul.components li a { padding:10px; display:block; color:#1f3042; text-decoration:none; font-weight:600; position:relative;cursor:pointer}
+#sidebar ul li.active > a, #sidebar a[aria-expanded="true"] { color:#fff !important; background:#1f3042}
+#sidebar a[data-toggle="collapse"] { position:relative}
+#sidebar a[aria-expanded="false"]::before, #sidebar a[aria-expanded="true"]::before { content:'\f107'; display:block; position:absolute; right:10px; top:6px; font-family:FontAwesome; font-size:18px}
+#sidebar a[aria-expanded="true"]::before { content:'\f106'}
+#sidebar .sideSubmenu{padding-left:0; list-style:none; background-color:#f0f0f0}
+#sidebar .sideSubmenu li a{ font-weight:500 !important; text-transform:capitalize !important; font-size:13px; position:relative}
+#sidebar ul.comOLinks { padding:10px 0; list-style:none}
+#sidebar ul.comOLinks li a { padding:5px 15px; display:block; text-decoration:none}
+#sidebar ul li a i{ width:20px; text-align:center}
+#content { width:100%; min-height:100vh; transition:all 0.3s; position:absolute; top:0; right:0}
+#sidebar ul.components li fa{ margin-right:8px}

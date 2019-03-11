@@ -1,0 +1,9 @@
+.res-cell-lft{ width:calc(50% - 10px); margin-right:10px}
+.res-cell-rgt{ width:calc(50% - 10px); margin-left:10px}
+.caption{ color:#898989; position:absolute; top:-18px; font-size:11px}
+.catRadio{ padding:0; margin:10px 0 0}
+.catRadio li{ margin-right:20px; list-style:none; display:inline}
+@media (max-width:767px) { 
+    .res-cell-lft{ width:100%; margin-right:0}
+    .res-cell-rgt{ width:100%; margin-left:0}
+}

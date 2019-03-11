@@ -1,0 +1,468 @@
+<div class="ui-g">
+    <div class="ui-g-12 ui-g-nopad ui-md-3 ui-lg-3">
+        <div class="ui-g">
+            <div class="ui-g-12 tile res-mr-mb15">
+                <div class="tile-heading">Raise Ticket</div>
+                <div class="ui-g">
+                    <div class="ui-g-12 ui-g-nopad ui-lg-6 res-cell-lft">
+                        <div class="form-group pos-relative">
+                            <label class="rs-dd-label">Service </label>
+                            <p-dropdown (onChange)="getTimeslots(mServiceSelect.id)" [options]="mService"
+                                [(ngModel)]="mServiceSelect" placeholder="Select" dataKey="id" optionLabel="title"
+                                class="rs-dd-100 form-group"></p-dropdown>
+                        </div>
+                    </div>
+                    <div class="ui-g-12 ui-g-nopad ui-lg-6 res-cell-rgt">
+                        <div class="form-group pos-relative">
+                            <label class="rs-dd-label">Date</label>
+                            <p-calendar [(ngModel)]="reqDate" placeholder="Select" [showIcon]="true"
+                                (onSelect)="getTimeslot(reqDate)"></p-calendar>
+                        </div>
+                    </div>
+                    <div class="ui-g-12 ui-g-nopad ui-lg-12">
+                        <div class="form-group pos-relative">
+                            <label class="rs-dd-label">Time Slot</label>
+                            <p-dropdown [options]="mSlots" [(ngModel)]="mSlotsSelect" placeholder="Select"
+                                optionLabel="time" class="rs-dd-100 form-group"></p-dropdown>
+                        </div>
+                    </div>
+                    <div class="ui-g-12 ui-g-nopad ui-lg-6 res-cell-lft">
+                        <div class="form-group pos-relative">
+                            <label class="rs-dd-label">Tower..</label>
+                            <p-dropdown [options]="mTower" [(ngModel)]="mTowerSelect" placeholder="Select" dataKey="id"
+                                optionLabel="title" class="rs-dd-100 form-group"></p-dropdown>
+                        </div>
+                    </div>
+                    <div class="ui-g-12 ui-g-nopad ui-lg-6 res-cell-rgt">
+                        <span class="ui-float-label form-group">
+                            <input id="float-input" type="text" size="30" pInputText [(ngModel)]="mFlatNo"
+                                (keyup)="onKey($event)">
+                            <label for="float-input">Flat Number</label>
+                        </span>
+                    </div>
+
+                    <!--Rohit Changes-->
+                    <div class="ui-g-12 ui-g-nopad ui-lg-12">
+                        <span class="ui-float-label form-group">
+                            <input id="float-input" type="text" size="200" pInputText readonly [(ngModel)]=values>
+                            <label for="float-input">Flat Owner</label>
+                        </span>
+                    </div>
+                    <!--Rohit Changes-->
+
+                    <div class="ui-g-12 ui-g-nopad ui-lg-12">
+                        <span class="ui-float-label">
+                            <input id="float-input" type="text" size="200" pInputText [(ngModel)]="mDesc">
+                            <label for="float-input">Description</label>
+                        </span>
+                    </div>
+                    <div class="ui-g-12 ui-g-nopad ui-lg-12 text-center mar-bt-5 mar-tp-15">
+                        <button pButton type="button" class="ui-button-rounded ttU minBtn" label="Create"
+                            (click)="createTicket()"></button>
+                    </div>
+                </div>
+            </div>
+            <div class="ui-g-12 tile res-mr15" style="display:none;">
+                <a href="javascript:void(0)" class="btn-link" (click)="openModal(template)">View Staff Engagement <i
+                        class="pi pi-chevron-right fr"></i></a>
+            </div>
+        </div>
+    </div>
+    <div class="ui-g-12 ui-md-9 ui-lg-9 tile">
+        <p-tabView (onChange)="tabChange($event)">
+            <p-tabPanel header="Open - {{oTickets.length}}">
+                <app-open></app-open>
+            </p-tabPanel>
+            <p-tabPanel header="Assigned - {{aTickets.length}}">
+                <app-assigned></app-assigned>
+            </p-tabPanel>
+            <p-tabPanel header="Closed - {{cTickets.length}}">
+                <app-close></app-close>
+            </p-tabPanel>
+            <p-tabPanel header="Escalated - {{eTickets.length}}">
+                <app-escalated></app-escalated>
+            </p-tabPanel>
+            <p-tabPanel header="Unresolved - {{uTickets.length}}">
+                <app-unresolved></app-unresolved>
+            </p-tabPanel>
+        </p-tabView>
+        <!-- <tabset >
+            <tab heading="Open" class="pos-relative" (onSelect)="changeTab(0)">
+                <ng-template tabHeading><span class="badge" >{{oTickets.length}}</span></ng-template>
+                <app-open></app-open>
+            </tab>
+            <tab heading="Assigned">
+                <ng-template tabHeading><span class="badge">{{aTickets.length}}</span></ng-template>
+                <app-assigned></app-assigned>
+            </tab>
+            <tab heading="Closed" class="pos-relative">
+                <ng-template tabHeading><span class="badge">{{cTickets.length}}</span></ng-template>
+                <app-close></app-close>
+            </tab>
+            <tab heading="Escalated">
+                <ng-template tabHeading><span class="badge">{{eTickets.length}}</span></ng-template>
+                <app-escalated></app-escalated>
+            </tab>
+            <tab heading="Unresolved">
+                <ng-template tabHeading><span class="badge">{{uTickets.length}}</span></ng-template>
+                <app-unresolved></app-unresolved>
+            </tab>
+        </tabset> -->
+    </div>
+</div>
+
+<ng-template #template>
+    <div class="modal-header">
+        <h4 class="modal-title">View Staff Engagement</h4>
+        <button type="button" class="close pull-right" aria-label="Close" (click)="modalRef.hide()"><span
+                aria-hidden="true">&times;</span></button>
+    </div>
+    <div class="modal-body rs-accordian">
+
+        <div class="ui-g mar-bt-20">
+            <div class="ui-g-12 ui-g-nopad ui-md-9 ui-lg-9">
+                <div class="ui-inputgroup pos-relative">
+                    <input type="text" pInputText placeholder="Search by Name">
+                    <button pButton type="button" icon="pi pi-search" class="ui-button-transparent"></button>
+                </div>
+            </div>
+            <div class="ui-g-12 ui-g-nopad ui-md-3 ui-lg-3 tr-tl-res">
+                <p-multiSelect [options]="cars" [(ngModel)]="selectedCars1" [filter]="false"
+                    defaultLabel="Select Filter"></p-multiSelect>
+            </div>
+        </div>
+
+
+
+        <p-accordion>
+            <p-accordionTab class="rs-serItem-1">
+                <p-header>Ram Niwas Kushwaha
+                    <div class="rs-badge">4</div>
+                </p-header>
+                <div class="ui-table">
+                    <table>
+                        <thead class="ui-table-thead">
+                            <tr>
+                                <th>Ticket ID</th>
+                                <th>Slot</th>
+                                <th>Tower</th>
+                                <th>Floor</th>
+                                <th>Flat</th>
+                            </tr>
+                        </thead>
+                        <tbody class="ui-table-tbody">
+                            <tr>
+                                <td>E2345</td>
+                                <td>12:00 - 01:00 PM</td>
+                                <td>G</td>
+                                <td>12</td>
+                                <td>1204</td>
+                            </tr>
+                            <tr>
+                                <td>E3024</td>
+                                <td>01:00 - 02:00 PM</td>
+                                <td>A</td>
+                                <td>5</td>
+                                <td>505</td>
+                            </tr>
+                            <tr>
+                                <td>E8954</td>
+                                <td>02:00 - 03:00 PM</td>
+                                <td>F</td>
+                                <td>8</td>
+                                <td>802</td>
+                            </tr>
+                            <tr>
+                                <td>E2345</td>
+                                <td>03:00 - 04:00 PM</td>
+                                <td>E</td>
+                                <td>2</td>
+                                <td>204</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </p-accordionTab>
+            <p-accordionTab class="rs-serItem-1">
+                <p-header>Mathura Das Pandey
+                    <div class="rs-badge">2</div>
+                </p-header>
+                <div class="ui-table">
+                    <table>
+                        <thead class="ui-table-thead">
+                            <tr>
+                                <th>Ticket ID</th>
+                                <th>Slot</th>
+                                <th>Tower</th>
+                                <th>Floor</th>
+                                <th>Flat</th>
+                            </tr>
+                        </thead>
+                        <tbody class="ui-table-tbody">
+                            <tr>
+                                <td>E8954</td>
+                                <td>02:00 - 03:00 PM</td>
+                                <td>F</td>
+                                <td>8</td>
+                                <td>802</td>
+                            </tr>
+                            <tr>
+                                <td>E2345</td>
+                                <td>03:00 - 04:00 PM</td>
+                                <td>E</td>
+                                <td>2</td>
+                                <td>204</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </p-accordionTab>
+            <p-accordionTab class="rs-serItem-1">
+                <p-header>Ram Niwas Kushwaha
+                    <div class="rs-badge">4</div>
+                </p-header>
+                <div class="ui-table">
+                    <table>
+                        <thead class="ui-table-thead">
+                            <tr>
+                                <th>Ticket ID</th>
+                                <th>Slot</th>
+                                <th>Tower</th>
+                                <th>Floor</th>
+                                <th>Flat</th>
+                            </tr>
+                        </thead>
+                        <tbody class="ui-table-tbody">
+                            <tr>
+                                <td>E2345</td>
+                                <td>12:00 - 01:00 PM</td>
+                                <td>G</td>
+                                <td>12</td>
+                                <td>1204</td>
+                            </tr>
+                            <tr>
+                                <td>E3024</td>
+                                <td>01:00 - 02:00 PM</td>
+                                <td>A</td>
+                                <td>5</td>
+                                <td>505</td>
+                            </tr>
+                            <tr>
+                                <td>E8954</td>
+                                <td>02:00 - 03:00 PM</td>
+                                <td>F</td>
+                                <td>8</td>
+                                <td>802</td>
+                            </tr>
+                            <tr>
+                                <td>E2345</td>
+                                <td>03:00 - 04:00 PM</td>
+                                <td>E</td>
+                                <td>2</td>
+                                <td>204</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </p-accordionTab>
+            <p-accordionTab class="rs-serItem-1">
+                <p-header>Mathura Das Pandey
+                    <div class="rs-badge">2</div>
+                </p-header>
+                <div class="ui-table">
+                    <table>
+                        <thead class="ui-table-thead">
+                            <tr>
+                                <th>Ticket ID</th>
+                                <th>Slot</th>
+                                <th>Tower</th>
+                                <th>Floor</th>
+                                <th>Flat</th>
+                            </tr>
+                        </thead>
+                        <tbody class="ui-table-tbody">
+                            <tr>
+                                <td>E8954</td>
+                                <td>02:00 - 03:00 PM</td>
+                                <td>F</td>
+                                <td>8</td>
+                                <td>802</td>
+                            </tr>
+                            <tr>
+                                <td>E2345</td>
+                                <td>03:00 - 04:00 PM</td>
+                                <td>E</td>
+                                <td>2</td>
+                                <td>204</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </p-accordionTab>
+            <p-accordionTab class="rs-serItem-1">
+                <p-header>Ram Niwas Kushwaha
+                    <div class="rs-badge">4</div>
+                </p-header>
+                <div class="ui-table">
+                    <table>
+                        <thead class="ui-table-thead">
+                            <tr>
+                                <th>Ticket ID</th>
+                                <th>Slot</th>
+                                <th>Tower</th>
+                                <th>Floor</th>
+                                <th>Flat</th>
+                            </tr>
+                        </thead>
+                        <tbody class="ui-table-tbody">
+                            <tr>
+                                <td>E2345</td>
+                                <td>12:00 - 01:00 PM</td>
+                                <td>G</td>
+                                <td>12</td>
+                                <td>1204</td>
+                            </tr>
+                            <tr>
+                                <td>E3024</td>
+                                <td>01:00 - 02:00 PM</td>
+                                <td>A</td>
+                                <td>5</td>
+                                <td>505</td>
+                            </tr>
+                            <tr>
+                                <td>E8954</td>
+                                <td>02:00 - 03:00 PM</td>
+                                <td>F</td>
+                                <td>8</td>
+                                <td>802</td>
+                            </tr>
+                            <tr>
+                                <td>E2345</td>
+                                <td>03:00 - 04:00 PM</td>
+                                <td>E</td>
+                                <td>2</td>
+                                <td>204</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </p-accordionTab>
+            <p-accordionTab class="rs-serItem-1">
+                <p-header>Mathura Das Pandey
+                    <div class="rs-badge">2</div>
+                </p-header>
+                <div class="ui-table">
+                    <table>
+                        <thead class="ui-table-thead">
+                            <tr>
+                                <th>Ticket ID</th>
+                                <th>Slot</th>
+                                <th>Tower</th>
+                                <th>Floor</th>
+                                <th>Flat</th>
+                            </tr>
+                        </thead>
+                        <tbody class="ui-table-tbody">
+                            <tr>
+                                <td>E8954</td>
+                                <td>02:00 - 03:00 PM</td>
+                                <td>F</td>
+                                <td>8</td>
+                                <td>802</td>
+                            </tr>
+                            <tr>
+                                <td>E2345</td>
+                                <td>03:00 - 04:00 PM</td>
+                                <td>E</td>
+                                <td>2</td>
+                                <td>204</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </p-accordionTab>
+            <p-accordionTab class="rs-serItem-1">
+                <p-header>Ram Niwas Kushwaha
+                    <div class="rs-badge">4</div>
+                </p-header>
+                <div class="ui-table">
+                    <table>
+                        <thead class="ui-table-thead">
+                            <tr>
+                                <th>Ticket ID</th>
+                                <th>Slot</th>
+                                <th>Tower</th>
+                                <th>Floor</th>
+                                <th>Flat</th>
+                            </tr>
+                        </thead>
+                        <tbody class="ui-table-tbody">
+                            <tr>
+                                <td>E2345</td>
+                                <td>12:00 - 01:00 PM</td>
+                                <td>G</td>
+                                <td>12</td>
+                                <td>1204</td>
+                            </tr>
+                            <tr>
+                                <td>E3024</td>
+                                <td>01:00 - 02:00 PM</td>
+                                <td>A</td>
+                                <td>5</td>
+                                <td>505</td>
+                            </tr>
+                            <tr>
+                                <td>E8954</td>
+                                <td>02:00 - 03:00 PM</td>
+                                <td>F</td>
+                                <td>8</td>
+                                <td>802</td>
+                            </tr>
+                            <tr>
+                                <td>E2345</td>
+                                <td>03:00 - 04:00 PM</td>
+                                <td>E</td>
+                                <td>2</td>
+                                <td>204</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </p-accordionTab>
+            <p-accordionTab class="rs-serItem-1">
+                <p-header>Mathura Das Pandey
+                    <div class="rs-badge">2</div>
+                </p-header>
+                <div class="ui-table">
+                    <table>
+                        <thead class="ui-table-thead">
+                            <tr>
+                                <th>Ticket ID</th>
+                                <th>Slot</th>
+                                <th>Tower</th>
+                                <th>Floor</th>
+                                <th>Flat</th>
+                            </tr>
+                        </thead>
+                        <tbody class="ui-table-tbody">
+                            <tr>
+                                <td>E8954</td>
+                                <td>02:00 - 03:00 PM</td>
+                                <td>F</td>
+                                <td>8</td>
+                                <td>802</td>
+                            </tr>
+                            <tr>
+                                <td>E2345</td>
+                                <td>03:00 - 04:00 PM</td>
+                                <td>E</td>
+                                <td>2</td>
+                                <td>204</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </p-accordionTab>
+        </p-accordion>
+    </div>
+</ng-template>

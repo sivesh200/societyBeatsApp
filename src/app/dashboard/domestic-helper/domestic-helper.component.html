@@ -1,0 +1,80 @@
+<div class="ui-g">
+  <div class="ui-g-12 ui-g-nopad ui-md-3 ui-lg-3">
+    <div class="ui-g">
+      <div class="ui-g-12 tile res-mr-mb15">
+        <div class="tile-heading">Domestic Staff In/Out</div>
+        <div class="ui-g">
+          <div class="ui-g-12 ui-g-nopad ui-lg-12">
+            <div class="ui-float-label ui-inputgroup pos-relative">
+              <input id="float-input" type="text" pInputText [(ngModel)]="q">
+              <label for="float-input">Search Employee ID/Name/Mobile</label>
+              <button pButton type="button" (click)="toggle(q)" icon="pi pi-search"
+                class="ui-button-transparent"></button>
+            </div>
+          </div>
+          <div class="ui-g-12 ui-g-nopad ui-lg-12 mar-tp-15" *ngIf="show">
+            <div *ngFor="let x of current">
+              <div class="dTable vIn">
+                <div class="vIcon"><img src="../../../assets/images/{{(x.gender=='Female'?'female':'male')}}.png"
+                    alt=""></div>
+                <div class="vDesc pos-relative">
+                  <div class="vAction"><button pButton type="button" label="In"  (click)="update(x.id,0)"></button></div>
+                  <h1>{{x.phone}}</h1>
+                  <h2>{{x.first_name + ' ' + x.last_name}}</h2>
+                  <ul>
+                    <li class="last-updt">{{x.category_info.title}}</li>
+                  </ul>
+                </div>
+              </div>
+              <div class="dTable vOut">
+                <div class="vIcon"><img src="../../../assets/images/{{(x.gender=='Female'?'female':'male')}}.png"
+                    alt=""></div>
+                <div class="vDesc pos-relative">
+                  <div class="vAction"><button pButton type="button" label="Out" (click)="update(x.id,1)"></button></div>
+                  <h1>{{x.phone}}</h1>
+                  <h2>{{x.first_name + ' ' + x.last_name}}</h2>
+                  <ul>
+                    <li class="last-updt">{{x.category_info.title}}</li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="ui-g-12 ui-md-9 ui-lg-9">
+    <div class="clear mar-bt-15">
+      <div class="fl" (click)="onButtonGroupClick($event)">
+        <button class="btn active" type="button" (click)="getHelpers(0,0)">Today</button>&nbsp;
+        <button class="btn" type="button" (click)="getHelpers(-1,0)">Last 7 Days</button>
+      </div>
+      <div class="fr" (click)="onButtonGroupClick($event)">
+        <button class="btn" type="button" (click)="getHelpers(date,0)">In</button>&nbsp;
+        <button class="btn" type="button" (click)="getHelpers(date,1)">Out</button>&nbsp;
+        <button class="btn active" type="button" (click)="getHelpers(0,-1)">Both</button>
+      </div>
+    </div>
+    <div class="item iOut clear" *ngFor="let x of helpers;let i=index;">
+      <div class="diTable">
+        <div class="diCell itemIcon"><img
+            src="../../../assets/images/{{(x.domestic_helper_info==null?'male':(x.domestic_helper_info.gender=='Female'?'female':'male'))}}.png"
+            alt=""></div>
+        <div class="diCell h1">{{x.domestic_helper_info?.first_name + ' ' + x.domestic_helper_info?.last_name}}</div>
+        <div class="diCell hData">{{x.domestic_helper_info?.phone}}</div>
+        <div class="diCell hData">{{x.domestic_helper_info?.phone}}</div>
+        <div class="diCell hData">Cleaner</div>
+      </div>
+    </div>
+    <!-- <div class="item iIn clear">
+        <div class="diTable">
+          <div class="diCell itemIcon"><img src="../../../assets/images/male.png" alt=""></div>
+          <div class="diCell h1">Ramu Kaka</div>
+          <div class="diCell hData">9810089912</div>
+          <div class="diCell hData">G - 1101</div>
+          <div class="diCell hData">Cook</div>
+        </div>
+      </div> -->
+  </div>
+</div>

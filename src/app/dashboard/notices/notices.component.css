@@ -1,0 +1,15 @@
+.res-cell-lft{ width:calc(50% - 5px); margin-right:5px}
+.res-cell-rgt{ width:calc(50% - 5px); margin-left:5px}
+.caption{ font-size:12px; color:#898989}
+.catRadio{ padding:0}
+.catRadio li{ margin-right:20px; list-style:none; display:inline}
+.cl{ clear: both; height:50px}
+.fl{ float:left}
+.local-dd{ width:80px}
+.local-input{ width:calc(100% - 180px)}
+.local-action{ width:100px; text-align: right}
+@media (max-width:767px) { 
+    .res-cell-lft{ width:100%; margin-right:0}
+    .res-cell-rgt{ width:100%; margin-left:0}
+}
+

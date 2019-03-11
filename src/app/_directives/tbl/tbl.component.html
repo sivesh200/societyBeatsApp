@@ -1,0 +1,45 @@
+
+  <p-table #dt [columns]="cols" [columns]="selectedColumns" [value]="data" [paginator]="config.paginator" [rows]="config.offset"
+    [rows]="config.offset" selectionMode="multiple" [(selection)]="selectedData">
+    <ng-template pTemplate="caption">
+      <div class="grid-filter">
+        <div class="grid-filter-cell fl">
+            <p-multiSelect [options]="cols" [(ngModel)]="selectedColumns" optionLabel="header" selectedItemsLabel="{0} columns selected" [style]="{minWidth: '180px'}" defaultLabel="Choose Columns" *ngIf="config.colfilter"></p-multiSelect>
+        </div>
+        <div class="grid-filter-cell fr"><i class="grid-filter-btn icon-export-file" *ngIf="config.export" (click)="dt.exportCSV()" pTooltip="Export all records" tooltipPosition="left"></i></div>
+        <div class="grid-filter-cell fr"><i class="grid-filter-btn icon-export-selected" *ngIf="config.export" (click)="dt.exportCSV({selectionOnly:true})" pTooltip="Export selected records" tooltipPosition="left"></i></div>
+        <div class="grid-filter-cell fr pos-relative">
+            <i class="pi pi-search pi-cus-icon"></i>
+            <input type="text" pInputText size="50" *ngIf="config.search" placeholder="Search" (input)="dt.filterGlobal($event.target.value, 'contains')" style="width:180px">
+        </div>
+      </div>
+    </ng-template>
+    <ng-template pTemplate="header" let-col>
+      <tr>
+        <th *ngFor="let c of col" [pSortableColumn]="c.field">
+          {{c.header}}
+          <p-sortIcon [field]="col.field" ariaLabel="Activate to sort" ariaLabelDesc="Activate to sort in descending order"
+            ariaLabelAsc="Activate to sort in ascending order"></p-sortIcon>
+        </th>
+        <th *ngIf="actions!=null" [ngStyle]="(config.width==undefined)?{width:auto}:{width:config.width}" >Actions</th>
+      </tr>
+    </ng-template>
+    <ng-template pTemplate="body" let-rowData let-columns="columns">
+      <tr>
+        <td *ngFor="let col of columns;let i=index">
+          <!-- <strong *ngIf="i==columns.length-1" [innerHtml]="c">aaaa</strong> -->
+          <!-- {{rowData[col.field]}} -->
+          <ng-template let-item="columns" pTemplate="cBody" >
+              <!-- <p-spinner [(ngModel)]="rowData[col.name]"></p-spinner>	 -->
+              <img src="./assets/logo.png">
+          </ng-template>
+          <span [innerHTML]="rowData[col.field]"></span>
+        </td> 
+        <td class="p-data p-action" *ngIf="actions!=null">
+            <a *ngFor="let d of actions" href="javascript:void(0)" [id]="'a'+d.id" (click)="callAction(d,rowData)">
+                <i [class]="d.icon"></i> {{d.title}}
+            </a>
+        </td>
+      </tr>
+    </ng-template>
+  </p-table>

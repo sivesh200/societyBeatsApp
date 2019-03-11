@@ -1,0 +1,118 @@
+<div class="ui-g">
+  <div class="ui-g-12 ui-g-nopad ui-md-3 ui-lg-3">
+    <div class="ui-g">
+      <div class="ui-g-12 tile res-mr-mb15">
+        <div class="tile-heading">Visitor Entry</div>
+        <div class="ui-g">
+            <div class="ui-g-12 ui-g-nopad ui-lg-6 res-cell-lft">
+                <span class="ui-float-label form-group"> 
+                    <p-dropdown [options]="mTower" [(ngModel)]="mTowerSelect"  placeholder="Select" dataKey="id" optionLabel="title" class="rs-dd-100 form-group"></p-dropdown>
+                  <label for="float-input">Tower</label>
+                </span>
+              </div>
+          <div class="ui-g-12 ui-g-nopad ui-lg-6 res-cell-lft">
+            <span class="ui-float-label form-group">
+              <input id="float-input" type="text" size="30" pInputText [(ngModel)]="flatno" (keyup)="searchFlat($event)">
+              <label for="float-input">Flat No</label>
+            </span>
+          </div>
+          <div class="ui-g-12 ui-g-nopad ui-lg-6 res-cell-lft">
+              <span class="ui-float-label form-group">
+                <input disabled id="float-input" type="text" size="30" pInputText [(ngModel)]="flatOwner">
+                <label for="float-input">Flat Owner</label>
+              </span>
+            </div>
+          <!-- <div class="ui-g-12 ui-g-nopad ui-lg-6 res-cell-rgt">
+            <span class="ui-float-label form-group">
+              <input id="float-input" type="text" size="30" pInputText [(ngModel)]="purpose">
+              <label for="float-input">Purpose of Visit</label>
+            </span>
+          </div> -->
+          <div class="ui-g-12 ui-g-nopad ui-lg-6 res-cell-rgt">
+            <div class="form-group pos-relative">
+                <label class="rs-dd-label">Purpose of Visit </label>
+                <p-dropdown [options]="tower" [(ngModel)]="selTower" placeholder="Select" class="rs-dd-100 form-group"></p-dropdown>
+            </div>
+        </div>
+          <div class="ui-g-12 ui-g-nopad ui-lg-12">
+            <span class="ui-float-label form-group">
+              <input id="float-input" type="text" size="200" pInputText [(ngModel)]="vname">
+              <label for="float-input">Name</label>
+            </span>
+          </div>
+          <div class="ui-g-12 ui-g-nopad ui-lg-12">
+            <span class="ui-float-label form-group">
+              <input id="float-input" type="text" size="200" pInputText [(ngModel)]="address">
+              <label for="float-input">Address</label>
+            </span>
+          </div>
+          <div class="ui-g-12 ui-g-nopad ui-lg-6 res-cell-lft">
+            <span class="ui-float-label">
+              <input id="float-input" type="text" size="30" pInputText [(ngModel)]="phone">
+              <label for="float-input">Phone/Mobile</label>
+            </span>
+          </div>
+          <div class="ui-g-12 ui-g-nopad ui-lg-6 res-cell-rgt">
+            <span class="ui-float-label">
+              <input id="float-input" type="text" size="30" pInputText  [(ngModel)]="vno">
+              <label for="float-input">Vehicle No</label>
+            </span>
+          </div>
+          <div class="ui-g-12 ui-g-nopad ui-lg-12 text-center mar-bt-5 mar-tp-15">
+            <button pButton type="button" class="ui-button-rounded ttU minBtn" label="Submit" (click)="addVisitor()"></button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="ui-g-12 ui-md-9 ui-lg-9">
+    <div class="fl mar-bt-15 wid100">
+      <div class="fl">
+        <div class="ui-float-label ui-inputgroup pos-relative">
+          <input id="float-input" class="rs-search" type="text" placeholder="Search Name/Mobile" [(ngModel)]="keyword">
+          <button pButton type="button" icon="pi pi-search" class="ui-button-transparent" (click)="searchVisitor()"></button>
+        </div>
+      </div>
+      <div class="fr">
+        <div class="clear">
+          <div class="fl mar-rt-15" (click)="onButtonGroupClick($event)">
+            <button class="btn active" type="button" (click)="date=0;getVisitor()">Today</button>&nbsp;
+            <button class="btn" type="button"  (click)="date=-1;getVisitor()">Last 7 Days</button>
+          </div>
+          <div class="fr" (click)="onButtonGroupClick($event)">
+            <button class="btn active" type="button" (click)="status=1;getVisitor()">In</button>&nbsp;
+            <button class="btn" type="button"  (click)="status=0;getVisitor()">Out</button>&nbsp;
+            <button class="btn" type="button"  (click)="status=null;getVisitor()">Both</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="iHead clear">
+      <div class="diTable">
+        <div class="diCell fakeIcon"></div>
+        <div class="diCell">Flat</div>
+        <div class="diCell">Name</div>
+        <div class="diCell">Address</div>
+        <div class="diCell">Mobile</div>
+        <div class="diCell">Vehicle</div>
+        <div class="diCell">Action</div>
+      </div>
+    </div>
+    <div class="item iOut clear" *ngFor="let x of visitor">
+      <div class="diTable">
+        <div class="diCell itemIcon"><img src="../../../assets/images/male.png" alt=""></div>
+        <div class="diCell">{{(x.tower_info!=null?x.tower_info.title:'')}} {{x?.flat_info.flat_address}}</div>
+        <div class="diCell">{{x?.full_name}}&nbsp;</div>
+        <div class="diCell">{{x?.place}}&nbsp;</div>
+        <div class="diCell">{{x?.mobile_number}}&nbsp;</div>
+        <div class="diCell">{{(x?.vehicle_number==null?'':x?.vehicle_number)}}&nbsp; </div>
+        <!-- <div class="diCell">DL 5CN 5175</div> -->
+        <div class="diCell" *ngIf="x.status==0"><button pButton type="button" label="Out" (click)="outVisit(x)"></button></div>
+        <div class="diCell" *ngIf="x.status==1"><button pButton type="button" label="In"></button></div>
+        
+      </div>
+    </div>
+    
+  </div>
+</div>

@@ -1,0 +1,14 @@
+header{ background:#1f3042; position:fixed; top:0; left:0; width:100%; z-index:1; box-shadow:1px 1px 3px rgba(0, 0, 0, 0.1)}
+.fl-lft{ float:left}
+.fl-rgt{ float:right}
+.hd-item{ height:50px}
+.navbar-toggle{display:block; padding:0; margin:0; height:50px; width:50px; border:0; outline:0; cursor:pointer; z-index:1; background-color:transparent}
+.navbar-toggle .icon-bar { width:22px; background:#fff; display:block; height:1px; margin-left:auto; margin-right:auto; border-radius:3px}
+.navbar-toggle .icon-bar+.icon-bar { margin-top:4px}
+.rs-menu-brand{ text-transform:uppercase; color:#fff; line-height:50px; font-size:18px; font-weight:600; -webkit-touch-callout:none; -webkit-user-select:none; -khtml-user-select:none; -moz-user-select:none; -ms-user-select:none; user-select:none}
+.rs-menu-brand span{color:#fd7d00}
+.rs-menu-brand img{ height:21px; vertical-align:middle; margin-left:5px}
+.bubbleCount{ position:absolute; top:4px; right:0; text-align:center; font-size:12px; background-color:#fd7d00; border-radius:30px; font-weight:600; width:22px; height:22px; line-height:22px}
+.hd-ic{ width:40px; line-height:50px; text-align:center; color:#fff; font-size:21px; position:relative; cursor:pointer}
+.hd-ic i{ vertical-align:middle}
+

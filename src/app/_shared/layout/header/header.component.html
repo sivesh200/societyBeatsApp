@@ -1,0 +1,15 @@
+<p-sidebar [(visible)]="display" [blockScroll]="true" class="sb-sidebar">
+  <p-slideMenu [model]="items"></p-slideMenu>
+</p-sidebar>
+
+<header class="clear">
+  <div class="fl-lft hd-item rs-menu-icon animated fadeInLeft"><button (click)="display = true" class="navbar-toggle"
+      icon="pi pi-plus"><span class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span></button></div>
+  <div class="fl-lft hd-item rs-menu-brand animated zoomIn">Society <span>Beats</span> <img src="../../../../assets/images/societyBeats-mob.png"></div>
+  <div class="fl-rgt hd-item hd-ic animated fadeInRight" (click)="menu.toggle($event)"><i class="icon-user"></i></div>
+  <div class="fl-rgt hd-item hd-ic animated fadeInRight" (click)="menu1.toggle($event)">
+    <div class="bubbleCount">6</div><i class="icon-notification"></i>
+  </div>
+</header>
+<p-menu #menu [popup]="true" [model]="userItem"></p-menu>
+<p-menu #menu1 [popup]="true" [model]="notiItem"></p-menu>

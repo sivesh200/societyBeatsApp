@@ -1,0 +1,81 @@
+<div class="tile">
+  <div class="tile-heading">Vehicle Master
+    <a style="float:right" href="javascript:void(0)">
+      <i class="pi pi-refresh"></i> Reload
+    </a>
+  </div>
+  <app-tbl [data]="data" [cols]="cols" [config]="config"></app-tbl>
+</div>
+
+<div class="tc mar-tp-20"><button pButton type="button" class="ui-button-rounded minBtn ttU" label="Add Vehicle" (click)="openModal(template)"></button></div>
+
+<ng-template #template>
+  <div class="modal-header">
+      <h4 class="modal-title">Add Vehicle</h4>
+      <button type="button" class="close pull-right" aria-label="Close" (click)="modalRef.hide()"><span aria-hidden="true">&times;</span></button>
+  </div>
+  <div class="modal-body">
+      <div class="ui-g mar-tp-20">
+          <div class="ui-g-12 ui-g-nopad ui-lg-6 res-cell-lft">
+              <div class="form-group pos-relative">
+                  <label class="rs-dd-label">Tower </label>
+                  <p-dropdown [options]="mTower" [(ngModel)]="mTowerSelect"  placeholder="Select" dataKey="id" optionLabel="title" class="rs-dd-100 form-group"></p-dropdown>
+              </div>
+          </div>
+          <div class="ui-g-12 ui-g-nopad ui-lg-6 res-cell-rgt">
+              <span class="ui-float-label form-group">
+                  <!-- <input id="float-input1" type="text" pInputText> -->
+                  <input id="float-input" type="text" size="30" pInputText [(ngModel)]="flatno" (keyup)="searchFlat($event)">
+                  <label for="float-input1">Flat No</label>
+              </span>
+          </div>
+          <div class="ui-g-12 ui-g-nopad ui-lg-6 res-cell-lft pos-relative">
+            <div class="caption">Type</div>
+            <ul class="catRadio">
+              <li><p-radioButton name="group1" value="1" label="Car"></p-radioButton></li>
+              <li><p-radioButton name="group1" value="2" label="Bike"></p-radioButton></li>
+            </ul>
+          </div>
+          <div class="ui-g-12 ui-g-nopad ui-lg-6 res-cell-rgt">
+              <span class="ui-float-label form-group">
+                  <input id="float-input1" type="text" pInputText>
+                  <label for="float-input1">Registration No</label>
+              </span>
+          </div>
+          <div class="ui-g-12 ui-g-nopad ui-lg-6 res-cell-lft">
+              <div class="form-group pos-relative">
+                  <label class="rs-dd-label">Model Year </label>
+                  <p-dropdown [options]="modelY" [(ngModel)]="selModelY" placeholder="Select" class="rs-dd-100 form-group"></p-dropdown>
+              </div>
+          </div>
+          <div class="ui-g-12 ui-g-nopad ui-lg-6 res-cell-rgt">
+              <div class="form-group pos-relative">
+                  <label class="rs-dd-label">Make </label>
+                  <p-dropdown [options]="make" [(ngModel)]="selMake" placeholder="Select" class="rs-dd-100 form-group"></p-dropdown>
+              </div>
+          </div>
+          <div class="ui-g-12 ui-g-nopad ui-lg-6 res-cell-lft">
+              <span class="ui-float-label form-group">
+                  <input id="float-input2" type="text" pInputText>
+                  <label for="float-input2">Model</label>
+              </span>
+          </div>
+          <div class="ui-g-12 ui-g-nopad ui-lg-6 res-cell-rgt">
+              <div class="form-group pos-relative">
+                  <label class="rs-dd-label">Color </label>
+                  <p-dropdown [options]="color" [(ngModel)]="selColor" placeholder="Select" class="rs-dd-100 form-group"></p-dropdown>
+              </div>
+          </div>
+          <div class="ui-g-12 ui-g-nopad ui-lg-6 res-cell-lft pos-relative">
+              <div class="caption">Current Status</div>
+              <ul class="catRadio">
+                <li><p-radioButton name="group2" value="1" label="In"></p-radioButton></li>
+                <li><p-radioButton name="group2" value="2" label="Out"></p-radioButton></li>
+              </ul>
+            </div>
+      </div>
+  </div>
+  <div class="modal-footer">
+      <button pButton type="button" class="ui-button-rounded ttU minBtn" label="Submit" (click)="modalRef.hide()"></button>
+  </div>
+</ng-template>

@@ -1,0 +1,191 @@
+<app-alert [data]="currentEvent" summary="Are you sure?" detail="">
+
+</app-alert>
+<div class="tile clear">
+  <div class="tile-heading">Events </div>
+  <div class="galWrapper" *ngFor="let x of events">
+    <img class="eImg" src="{{link +'/events/' + x.image}}" onerror="this.src='../../../assets/images/tmp1.jpg'">
+    <div class="galIC galEdit gal-icr2" (click)="editModal(editEvent,x)">
+      <i class="pi pi-pencil"></i>
+    </div>
+    <div class="galIC galDel gal-icr1" (click)="delete(x.id)">
+      <i class="pi pi-trash"></i>
+    </div>
+    <div class="galTitle">
+      <div>{{x.title}}</div>
+      <span>{{x.total_images}} Photos</span>
+    </div>
+  </div>
+  <!-- <div class="galWrapper">
+    <img src="../../../assets/images/tmp2.jpg">
+    <div class="galIC galEdit gal-icr2" (click)="editModal(editEvent)">
+      <i class="pi pi-pencil"></i>
+    </div>
+    <div class="galIC galDel gal-icr1">
+      <i class="pi pi-trash"></i>
+    </div>
+    <div class="galTitle">
+      <div>Republic Day Celebration</div>
+      <span>18 Photos</span>
+    </div>
+  </div>
+  <div class="galWrapper">
+    <img src="../../../assets/images/tmp3.jpg">
+    <div class="galIC galEdit gal-icr2" (click)="editModal(editEvent)">
+      <i class="pi pi-pencil"></i>
+    </div>
+    <div class="galIC galDel gal-icr1">
+      <i class="pi pi-trash"></i>
+    </div>
+    <div class="galTitle">
+      <div>Diwali Celebration 2018 at Lotus Pond</div>
+      <span>24 Photos</span>
+    </div>
+  </div>
+  <div class="galWrapper">
+    <img src="../../../assets/images/tmp4.jpg">
+    <div class="galIC galEdit gal-icr2" (click)="editModal(editEvent)">
+      <i class="pi pi-pencil"></i>
+    </div>
+    <div class="galIC galDel gal-icr1">
+      <i class="pi pi-trash"></i>
+    </div>
+    <div class="galTitle">
+      <div>New Year Eveening Celebration</div>
+      <span>26 Photos</span>
+    </div>
+  </div> -->
+</div>
+<div class="tc mar-tp-20">
+  <button pButton type="button" class="ui-button-rounded minBtn ttU" label="Create Event" (click)="openModal(createEvent)"></button>
+</div>
+
+<ng-template #editEvent>
+  <div class="modal-header">
+    <h4 class="modal-title">Edit Event - [ {{currentEvent.title}} ]</h4>
+    <button type="button" class="close pull-right" aria-label="Close" (click)="modalRef.hide()">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+    <div class="ui-g">
+      <div class="ui-g-12 ui-g-nopad mar-tp-20">
+        <span class="ui-float-label form-group">
+          <input id="float-input1" type="text" [(ngModel)]="currentEvent.title" pInputText>
+          <label for="float-input1">Title</label>
+        </span>
+      </div>
+      <div class="ui-g-12 ui-g-nopad">
+        <span class="ui-float-label form-group">
+          <textarea class="textarea-md" id="float-input2" [(ngModel)]="currentEvent.full_desc" pInputTextarea></textarea>
+          <label class="textarea-label-lg" for="float-input2">Description</label>
+        </span>
+      </div>
+      <div class="ui-g-12 ui-g-nopad pos-relative form-group">
+        <label class="rs-dd-label comLabel">Change Cover Photo</label>
+        <div class="clear">
+          <div class="galWrapper">
+            <img src="{{link + '/events/' + currentEvent.image}}">
+            <div class="galIC galEdit gal-icr1">
+              <i class="pi pi-pencil"></i>
+            </div>
+          </div>
+          <input class="" type="file" accept="image/*" (change)="changeListener($event)">
+        </div>
+      </div>
+      <div class="ui-g-12 ui-g-nopad pos-relative form-group">
+        <!-- <label class="rs-dd-label comLabel">Add/Delete Gallery Images</label>
+        <input class="" type="file" accept="image/*" (change)="changeListener($event)">
+        <button pButton type="button" class="ui-button-rounded ttU minBtn" label="Upload Image" (click)="uploaad()"></button> -->
+        <div class="clear">
+          <div class="galWrapper" *ngFor="let x of gl">
+            <img src="{{link  + '/gallery/' +  x.image}}" onerror="this.src='../../../assets/images/tmp1.jpg'" style="max-height:200px; max-width:165px;">
+            <div class="galIC galDel gal-icr1" (click)="delGImg(x.id)">
+              <i class="pi pi-trash"></i>
+            </div>
+          </div>
+          <!-- <div class="galWrapper">
+                      <img src="../../../assets/images/tmp2.jpg">
+                      <div class="galIC galDel gal-icr1">
+                        <i class="pi pi-trash"></i>
+                      </div>
+                    </div>
+                    <div class="galWrapper">
+                        <img src="../../../assets/images/tmp3.jpg">
+                        <div class="galIC galDel gal-icr1">
+                          <i class="pi pi-trash"></i>
+                        </div>
+                      </div>
+                      <div class="galWrapper">
+                        <img src="../../../assets/images/tmp4.jpg">
+                        <div class="galIC galDel gal-icr1">
+                          <i class="pi pi-trash"></i>
+                        </div>
+                      </div> -->
+        </div>
+      </div>
+      <div class="ui-g-12 ui-g-nopad form-group">
+        <div class="pos-relative">
+          <label class="rs-dd-label comLabel">Add Gallery Images</label>
+          <div class="panel" *ngFor="let x of uImage;let i=index">
+              <img [src]="(uImage[i].image==null?'':uImage[i].image)" width="50" height="50">
+              <input name="mFile[]" class="" type="file" accept="image/*" (change)="changeListener1($event,i)">  
+              <input name="title" type="text" placeholder="Enter Title" [(ngModel)]="x.title">
+              <input name="title" type="text" placeholder="Enter Description" [(ngModel)]="x.brief_desc">
+              
+            <a href="javascript:void(0)" (click)="remove(i)">X</a>
+          </div>
+          <br>
+          <button pButton type="button" class="ui-button-rounded ttU minBtn" label="Upload Gallery Image" (click)="upload()"></button>
+          
+          
+
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="modal-footer">
+    <button pButton type="button" class="ui-button-rounded ttU minBtn" label="Submit" (click)="update()"></button>
+  </div>
+</ng-template>
+
+<ng-template #createEvent>
+  <div class="modal-header">
+    <h4 class="modal-title">Create Event</h4>
+    <button type="button" class="close pull-right" aria-label="Close" (click)="modalRef.hide()">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+    <div class="ui-g">
+      <div class="ui-g-12 ui-g-nopad mar-tp-20">
+        <span class="ui-float-label form-group">
+          <input id="float-input1" type="text" pInputText [(ngModel)]="title" name="title">
+          <label for="float-input1">Title</label>
+        </span>
+      </div>
+      <div class="ui-g-12 ui-g-nopad">
+        <span class="ui-float-label form-group">
+          <textarea class="textarea-md" id="float-input2" pInputTextarea [(ngModel)]="desc" name="desc"></textarea>
+          <label class="textarea-label-lg" for="float-input2">Description</label>
+        </span>
+      </div>
+      <div class="ui-g-12 ui-g-nopad">
+        <div class="form-group pos-relative">
+          <label class="rs-dd-label comLabel">Add Cover Photo</label>
+          <!-- <p-fileUpload name="myfile[]" url="./upload.php" multiple="multiple" ></p-fileUpload> -->
+          <input class="" type="file" accept="image/*" (change)="changeListener($event)">
+        </div>
+      </div>
+      <!-- <div class="ui-g-12 ui-g-nopad">
+        <div class="pos-relative">
+          <label class="rs-dd-label comLabel">Add Gallery Images</label>
+          <p-fileUpload name="myfile[]" url="./upload.php" multiple="multiple"></p-fileUpload>
+        </div>
+      </div> -->
+    </div>
+  </div>
+  <div class="modal-footer">
+    <button pButton type="button" class="ui-button-rounded ttU minBtn" label="Submit" (click)="submit()"></button>
+  </div>
+</ng-template>

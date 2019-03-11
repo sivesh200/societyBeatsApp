@@ -1,0 +1,46 @@
+.tile{ background-color:#fff; box-shadow: 0 1px 3px 0 rgba(0,0,0,.2), 0 1px 1px 0 rgba(0,0,0,.14), 0 2px 1px -1px rgba(0,0,0,.12); border-radius:2px; padding:15px}
+.tile-heading{ margin-bottom:25px; text-transform:uppercase; color:#f89826}
+.res-mr-mb15{ margin-right:15px; margin-bottom:15px}
+.res-cell-lft{ width:calc(50% - 5px); margin-right:5px}
+.res-cell-rgt{ width:calc(50% - 5px); margin-left:5px}
+
+.dTable{ display:table; width:100%; padding:15px; margin-bottom:15px}
+.vIn{ background-color:#f8f8f8} .vOut{ background-color:#fff4e8}
+.vIcon{ display:table-cell; vertical-align: middle; text-align: center; background-color:#fff; width:60px; height:60px; border-radius:60px; border:1px solid #ececec}
+.vIcon img{ width:40px; height:40px}
+.vDesc{ display:table-cell; vertical-align: middle; padding-left:15px}
+.vDesc h1{ font-size:15px; padding: 0; margin: 0; color:#fd7d00; font-weight: normal}
+.vDesc h2{ font-size:12px; padding: 0; margin: 0;}
+.vDesc ul{ padding: 0; margin: 0;}
+.vDesc ul li{ font-size:12px; list-style-type:none; color:#666; float:left}
+.vDesc ul li.last-updt{ float:right}
+.vAction{ position: absolute; right:0; top: 0} .vAction button { min-width:50px !important}
+
+.item{ border-radius:40px; margin-bottom:15px}
+.diTable{ display:table; width:100%}
+.diCell{ display:table-cell; vertical-align:middle; padding-left:10px}
+.diCell:nth-child(2){ width:75px}
+.diCell:nth-child(3){ width:200px}
+.diCell:nth-child(5){ width:120px}
+.diCell:nth-child(6){ width:120px}
+.diCell:nth-child(7){ width:100px; text-align: center}
+.fakeIcon{ width:45px}
+.itemIcon{ background-color:#fff; width:45px; height:45px; border-radius:45px; text-align:center; padding-left:0}
+.itemIcon img{ width:41px; height:41px; vertical-align: middle}
+.hData{ padding-left:30px; width:24%}
+.iHead{ font-size:13px; margin-bottom:5px; color:#666; font-weight:bold} .iIn{ background-color: #f9fafb; border: 1px solid #e8e6e6} .iOut{ background-color: #fff4e8; border: 1px solid #f9d7b6}
+.fl{ float:left} .fr{ float:right}
+.mar-bt-15{ margin-bottom:15px}
+.btn{ background-color:#f4f4f4; border-color:#ececec; display: inline-block; font-weight: 400; text-align: center; white-space: nowrap; vertical-align: middle; cursor: pointer; border: 1px solid transparent; padding: 6px 12px; line-height: 1.42857143; border-radius: 4px; user-select: none; outline: none}
+.btn.active{ background-color: #fff; border: 1px solid #ececec; color:#f89826}
+.rs-search{ border:1px solid #a6a6a6; background:#fff; padding:8px; border-radius:3px; outline:none; min-width: 300px;}
+.ui-button-transparent{ height:32px}
+.wid100{ width:100%}
+.btn{ background-color:#f4f4f4; border-color:#ececec; display: inline-block; font-weight: 400; text-align: center; white-space: nowrap; vertical-align: middle; cursor: pointer; border: 1px solid transparent; padding: 6px 12px; line-height: 1.42857143; border-radius: 4px; user-select: none; outline: none}
+.btn.active{ background-color: #fff; border: 1px solid #ececec; color:#f89826}
+.mar-rt-15{ margin-right:15px}
+@media (max-width:767px) { 
+    .res-mr-mb15{ margin-right:0; margin-bottom:15px}
+    .res-cell-lft{ width:100%; margin-right:0}
+    .res-cell-rgt{ width:100%; margin-left:0}
+}

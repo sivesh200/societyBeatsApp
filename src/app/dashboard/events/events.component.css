@@ -1,0 +1,14 @@
+img{ vertical-align:bottom}
+.galWrapper{ box-shadow:0 1px 3px 0 rgba(0,0,0,.2), 0 1px 1px 0 rgba(0,0,0,.14), 0 2px 1px -1px rgba(0,0,0,.12); border-radius:2px; float:left; position:relative; border-radius:5px; margin-right: 15px; margin-bottom: 15px;}
+.galWrapper img{ border-radius:5px}
+.galIC{ background-color:#fff; width:26px; height:26px; border-radius:36px; position:absolute; top:10px; line-height:2.1; box-shadow:0 1px 3px 0 rgba(0,0,0,.2), 0 1px 1px 0 rgba(0,0,0,.14), 0 2px 1px -1px rgba(0,0,0,.12); text-align:center; cursor:pointer}
+.galEdit{ color:#116fbf}
+.galDel{ color:#CC0000}
+.gal-icr1{ right:10px}
+.gal-icr2{ right:46px}
+.galTitle{ position:absolute; left:0; bottom:0; width:100%; padding:10px; color:#fff; background:rgba(0, 0, 0, 0.5); border-bottom-right-radius: 5px; border-bottom-left-radius: 5px}
+.galTitle div{ white-space:nowrap; overflow:hidden; text-overflow:ellipsis}
+.galTitle span{ font-size:11px}
+.textarea-md{ height:100px}
+.comLabel{ top:-1.25em}
+.eImg{width: 180px;height: 322px;}

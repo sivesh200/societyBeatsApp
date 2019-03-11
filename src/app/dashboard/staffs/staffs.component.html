@@ -1,0 +1,75 @@
+<div class="ui-g">
+  <div class="ui-g-12 ui-g-nopad ui-md-3 ui-lg-3">
+    <div class="ui-g">
+      <div class="ui-g-12 tile res-mr-mb15">
+        <div class="tile-heading">Staff In/Out</div>
+        <div class="ui-g">
+          <div class="ui-g-12 ui-g-nopad ui-lg-12">
+            <div class="ui-float-label ui-inputgroup pos-relative">
+              <input id="float-input" type="text" pInputText>
+              <label for="float-input">Search Employee ID/Name/Mobile</label>
+              <button pButton type="button" (click)="toggle()" icon="pi pi-search" class="ui-button-transparent"></button>
+            </div>
+          </div>
+          <div class="ui-g-12 ui-g-nopad ui-lg-12 mar-tp-15" *ngIf="show">
+            <div class="dTable vIn">
+              <div class="vIcon"><img src="../../../assets/images/female.png" alt=""></div>
+              <div class="vDesc pos-relative">
+                <div class="vAction"><button pButton type="button" label="In"></button></div>
+                <h1>8884848451</h1>
+                <h2>Mukesh Kumar</h2>
+                <ul>
+                  <li>G - 1204</li>
+                  <li class="last-updt">Electrician</li>
+                </ul>
+              </div>
+            </div>
+            <div class="dTable vOut">
+              <div class="vIcon"><img src="../../../assets/images/male.png" alt=""></div>
+              <div class="vDesc pos-relative">
+                <div class="vAction"><button pButton type="button" label="Out"></button></div>
+                <h1>9810089912</h1>
+                <h2>Sivesh Singh</h2>
+                <ul>
+                  <li>G - 1101</li>
+                  <li class="last-updt">Plumber</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="ui-g-12 ui-md-9 ui-lg-9">
+    <div class="clear mar-bt-15">
+      <div class="fl" (click)="onButtonGroupClick($event)">
+        <button class="btn active" type="button">Today</button>&nbsp;
+        <button class="btn" type="button">Last 7 Days</button>
+      </div>
+      <div class="fr" (click)="onButtonGroupClick($event)">
+        <button class="btn" type="button">In</button>&nbsp;
+        <button class="btn" type="button">Out</button>&nbsp;
+        <button class="btn active" type="button">Both</button>
+      </div>
+    </div>
+    <div class="item iOut clear">
+      <div class="diTable">
+        <div class="diCell itemIcon"><img src="../../../assets/images/female.png" alt=""></div>
+        <div class="diCell h1">Mukesh Kumar</div>
+        <div class="diCell hData">8884848451</div>
+        <div class="diCell hData">G - 1204</div>
+        <div class="diCell hData">Electrician</div>
+      </div>
+    </div>
+    <div class="item iIn clear">
+      <div class="diTable">
+        <div class="diCell itemIcon"><img src="../../../assets/images/male.png" alt=""></div>
+        <div class="diCell h1">Sivesh Singh</div>
+        <div class="diCell hData">9810089912</div>
+        <div class="diCell hData">G - 1101</div>
+        <div class="diCell hData">Plumber</div>
+      </div>
+    </div>
+  </div>
+</div>

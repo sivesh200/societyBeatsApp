@@ -1,0 +1,44 @@
+<div class="tile">
+        <div class="tile-heading">User Information</div>
+        <app-tbl [data]="categories" [cols]="cols" [config]="config" [actions]="actionBtns" [doAction]="sendAction"></app-tbl>
+      </div>
+      
+      <div class="tc mar-tp-20"><button pButton type="button" class="ui-button-rounded minBtn ttU" label="Add User" (click)="openModal(template)"></button></div>
+      
+      <ng-template #template>
+        <div class="modal-header">
+            <h4 class="modal-title">Add User</h4>
+            <button type="button" class="close pull-right" aria-label="Close" (click)="modalRef.hide()"><span aria-hidden="true">&times;</span></button>
+        </div>
+        <div class="modal-body">
+            <div class="ui-g mar-tp-20">
+                <div class="ui-g-12 ui-g-nopad ui-lg-6 res-cell-lft">
+                    <span class="ui-float-label form-group">
+                        <input id="float-input1" type="text" size="30" pInputText>
+                        <label for="float-input1">First Name</label>
+                    </span>
+                </div>
+                <div class="ui-g-12 ui-g-nopad ui-lg-6 res-cell-rgt">
+                    <span class="ui-float-label form-group">
+                        <input id="float-input2" type="text" size="30" pInputText>
+                        <label for="float-input2">Mobile No</label>
+                    </span>
+                </div>
+                <div class="ui-g-12 ui-g-nopad ui-lg-6 res-cell-lft">
+                    <span class="ui-float-label form-group">
+                        <input id="float-input3" type="text" size="30" pInputText>
+                        <label for="float-input3">Email</label>
+                    </span>
+                </div>
+                <div class="ui-g-12 ui-g-nopad ui-lg-6 res-cell-rgt">
+                    <span class="ui-float-label form-group">
+                      <p-dropdown [options]="mService" [(ngModel)]="mServiceSelect" placeholder="Select" dataKey="id"  optionLabel="title" class="rs-dd-100 form-group"></p-dropdown>
+                        <label for="float-input2">Service Type</label>
+                    </span>
+                </div>
+            </div>
+        </div>
+        <div class="modal-footer">
+            <button pButton type="button" class="ui-button-rounded ttU minBtn" label="Submit" (click)="modalRef.hide()"></button>
+        </div>
+      </ng-template>

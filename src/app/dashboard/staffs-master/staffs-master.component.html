@@ -1,0 +1,91 @@
+<div class="tile">
+    <div class="tile-heading">Staff Information</div>
+    <app-tbl [data]="categories" [cols]="cols" [config]="config" [actions]="actionBtns" [doAction]="sendAction">
+    </app-tbl>
+</div>
+
+<div class="tc mar-tp-20"><button pButton type="button" class="ui-button-rounded minBtn ttU" label="Add Staff"
+        (click)="openModal(template)"></button></div>
+
+<ng-template #template>
+    <div class="modal-header">
+        <h4 class="modal-title">Add Staff</h4>
+        <button type="button" class="close pull-right" aria-label="Close" (click)="modalRef.hide()"><span
+                aria-hidden="true">&times;</span></button>
+    </div>
+    <div class="modal-body">
+        <div class="ui-g mar-tp-20">
+            <div class="ui-g-12 ui-g-nopad ui-lg-6 res-cell-lft">
+                <span class="ui-float-label form-group">
+                    <input id="float-input1" type="text" size="30" pInputText [(ngModel)]="staff.first_name">
+                    <label for="float-input1">First Name</label>
+                </span>
+            </div>
+            <div class="ui-g-12 ui-g-nopad ui-lg-6 res-cell-rgt">
+                <span class="ui-float-label form-group">
+                    <input id="float-input2" type="text" size="30" pInputText [(ngModel)]="staff.last_name">
+                    <label for="float-input2">Last Name </label>
+                </span>
+            </div>
+            <div class="ui-g-12 ui-g-nopad ui-lg-6 res-cell-lft">
+                <span class="ui-float-label form-group">
+                    <input id="float-input3" type="text" size="30" pInputText [(ngModel)]="staff.email">
+                    <label for="float-input3">Email</label>
+                </span>
+            </div>
+            <div class="ui-g-12 ui-g-nopad ui-lg-6 res-cell-lft">
+                <span class="ui-float-label form-group">
+                    <input id="float-input3" type="text" size="30" pInputText [(ngModel)]="staff.phone">
+                    <label for="float-input3">Phone</label>
+                </span>
+            </div>
+            <div class="ui-g-12 ui-g-nopad ui-lg-6 res-cell-lft">
+                <span class="ui-float-label form-group">
+                    <input id="float-input3" type="text" size="30" pInputText [(ngModel)]="staff.permanent_address">
+                    <label for="float-input3">Permanent Address</label>
+                </span>
+            </div>
+            <div class="ui-g-12 ui-g-nopad ui-lg-6 res-cell-lft">
+                <span class="ui-float-label form-group">
+                    <input id="float-input3" type="text" size="30" pInputText [(ngModel)]="staff.present_address">
+                    <label for="float-input3">Present Address</label>
+                </span>
+            </div>
+            <div class="ui-g-12 ui-g-nopad ui-lg-6 res-cell-lft">
+                <span class="ui-float-label form-group">
+                    <input id="float-input3" type="text" size="30" pInputText [(ngModel)]="staff.referral_info">
+                    <label for="float-input3">Referal Info</label>
+                </span>
+            </div>
+            <div class="ui-g-12 ui-g-nopad ui-lg-6 res-cell-rgt">
+                <span class="ui-float-label form-group">
+                    <p-dropdown [options]="Category" [(ngModel)]="selCate" placeholder="Select" [dataKey]="value"
+                        optionLabel="label" class="rs-dd-100 form-group"></p-dropdown>
+                    <label for="float-input2">Service Type</label>
+                </span>
+            </div>
+            <div class="ui-g-12 ui-g-nopad ui-lg-6 res-cell-lft">
+                <span class="ui-float-label form-group">
+                    <input type="file" name="ppic" id="file1" accept="image/*" (change)="changeListener($event,'file1')">
+                    <label for="float-input3">Profile Picture</label>
+                </span>
+            </div>
+            <div class="ui-g-12 ui-g-nopad ui-lg-6 res-cell-lft">
+                <span class="ui-float-label form-group">
+                    <input type="file" name="kyc1" id="file2" accept="image/*" (change)="changeListener($event,'file2')">
+                    <label for="float-input3">ID Proof</label>
+                </span>
+            </div>
+            <div class="ui-g-12 ui-g-nopad ui-lg-6 res-cell-lft">
+                <span class="ui-float-label form-group">
+                    <input type="file" name="kyc2" id="file3" accept="image/*" (change)="changeListener($event,'file3')">
+                    <label for="float-input3">Address Proof</label>
+                </span>
+            </div>
+
+        </div>
+    </div>
+    <div class="modal-footer">
+        <button pButton type="button" class="ui-button-rounded ttU minBtn" label="Submit" (click)="newStaff()"></button>
+    </div>
+</ng-template>

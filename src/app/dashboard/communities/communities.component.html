@@ -1,0 +1,94 @@
+<div class="tile clear">
+  <div class="tile-heading">Communities</div>
+  <div class="galWrapper" *ngFor="let x of communities;">
+    <img src="{{baseUrl}}/images/communities/{{x.image}}" style="max-width:385px; max-height: 215px;">
+    <div class="galIC galEdit gal-icr1" (click)="editModal(editEvent,x)">
+      <i class="pi pi-pencil"></i>
+    </div>
+    <div class="galTitle">
+      <div>{{x.title}}</div>
+      <span>{{x.total_members}} Members</span>
+    </div>
+  </div>
+  <!-- <div class="galWrapper">
+    <img src="../../../assets/images/c-tmp2.jpg">
+    <div class="galIC galEdit gal-icr1" (click)="editModal(editEvent)">
+      <i class="pi pi-pencil"></i>
+    </div>
+    <div class="galTitle">
+      <div>Total Tennis</div>
+      <span>89 Members</span>
+    </div>
+  </div>
+  <div class="galWrapper">
+    <img src="../../../assets/images/c-tmp3.jpg">
+    <div class="galIC galEdit gal-icr1" (click)="editModal(editEvent)">
+      <i class="pi pi-pencil"></i>
+    </div>
+    <div class="galTitle">
+      <div>Yoga & Aerobics</div>
+      <span>67 Members</span>
+    </div>
+  </div>
+  <div class="galWrapper">
+    <img src="../../../assets/images/c-tmp4.jpg">
+    <div class="galIC galEdit gal-icr1" (click)="editModal(editEvent)">
+      <i class="pi pi-pencil"></i>
+    </div>
+    <div class="galTitle">
+      <div>Swimming Champion</div>
+      <span>101 Members</span>
+    </div>
+  </div> -->
+</div>
+<div class="tc mar-tp-20">
+  <button pButton type="button" class="ui-button-rounded minBtn ttU" label="Create New Community" (click)="openModal(createEvent)"></button>
+</div>
+
+<ng-template #editEvent>
+  <div class="modal-header">
+    <h4 class="modal-title">Manage Members</h4>
+    <button type="button" class="close pull-right" aria-label="Close" (click)="modalRef.hide()">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+    <!-- <app-tbl [data]="dat a" [cols]="cols" [config]="config"></app-tbl> -->
+    <app-tbl [data]="members" [cols]="cols" [config]="config" [actions]="actionBtns" [doAction]="sendAction"></app-tbl>
+  </div>
+</ng-template>
+
+<ng-template #createEvent>
+  <div class="modal-header">
+    <h4 class="modal-title">Create New Community</h4>
+    <button type="button" class="close pull-right" aria-label="Close" (click)="modalRef.hide()">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+    <div class="ui-g">
+      <div class="ui-g-12 ui-g-nopad mar-tp-20">
+        <span class="ui-float-label form-group">
+          <input id="float-input1" type="text" pInputText [(ngModel)]="title">
+          <label for="float-input1">Title</label>
+        </span>
+      </div>
+      <div class="ui-g-12 ui-g-nopad">
+        <span class="ui-float-label form-group">
+          <textarea class="textarea-md" id="float-input2" pInputTextarea [(ngModel)]="desc"></textarea>
+          <label class="textarea-label-lg" for="float-input2">Description</label>
+        </span>
+      </div>
+      <div class="ui-g-12 ui-g-nopad">
+        <div class="form-group pos-relative">
+          <label class="rs-dd-label comLabel">Add Cover Photo</label>
+          <!-- <p-fileUpload (onUpload)="uploaded($event)" name="myfile[]" url="http://213.136.93.43:3000/v1/upload/file" multiple="multiple"></p-fileUpload> -->
+          <input class="" type="file" accept="image/*" (change)="changeListener($event)">
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="modal-footer">
+    <button pButton type="button" class="ui-button-rounded ttU minBtn" label="Submit" (click)="add()"></button>
+  </div>
+</ng-template>

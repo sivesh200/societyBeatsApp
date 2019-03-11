@@ -1,0 +1,126 @@
+<div class="ui-g">
+  <div class="ui-g-12 ui-g-nopad ui-md-3 ui-lg-3">
+    <div class="ui-g">
+      <div class="ui-g-12 tile res-mr-mb15" (click)="show=false">
+        <div class="tile-heading">Vehicle Entry</div>
+        <div class="ui-g">
+          <div class="ui-g-12 ui-g-nopad ui-lg-12">
+            <div class="ui-float-label ui-inputgroup pos-relative">
+              <input id="float-input" type="text" pInputText [(ngModel)]="sVehicle">
+              <label for="float-input">Search Vehicle i.e. 5175</label>
+              <button pButton type="button" (click)="toggle(sVehicle)" icon="pi pi-search" class="ui-button-transparent"></button>
+            </div>
+          </div>
+          <div class="ui-g-12 ui-g-nopad ui-lg-12 mar-tp-15" *ngIf="show">
+            <div class="dTable" [ngClass]="(x.status==0?'vIn':'vOut')" *ngFor="let x of sData">
+              <div class="vIcon"><img src="../../../assets/images/scooter.png" alt=""></div>
+              <div class="vDesc pos-relative">
+                <div class="vAction">
+                  <button pButton type="button" [label]="(x.status==1?'In':'Out')" (click)="update(x.id,x.status)"></button><br>
+                  <button pButton type="button" class="ui-button-secondary mar-tp-cus" [label]="(x.status!==1?'In':'Out')" (click)="update(x.id,x.status)"></button>
+                </div>
+                <h1>{{x.number}}</h1>
+                <h2>{{x.flat_info.name}}</h2>
+                <ul>
+                  <li>{{x.tower_info.title}} - {{x.flat_info.flat_address}}</li>
+                  <li>Last {{(x.status==0?'In':'Out')}} : {{dateString(x.createdAt,1)}}</li>
+                </ul>
+              </div>
+            </div>
+            <!-- <div class="dTable vOut">
+              <div class="vIcon"><img src="../../../assets/images/car.png" alt=""></div>
+              <div class="vDesc pos-relative">
+                <div class="vAction"><button pButton type="button" label="Out"></button></div>
+                <h1>DL 2CD 5175</h1>
+                <h2>Mohit Bhalla</h2>
+                <ul>
+                  <li>{{x.vehicle_info.tower_info.title}} - {{x.vehicle_info.flat_info.flat_address}}</li>
+                  <li class="last-updt">Last {{(x.status==0?'In':'Out')}} at: {{dateString(x.createdAt,1)}}</li>
+                </ul>
+              </div>
+            </div> -->
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="ui-g-12 ui-md-9 ui-lg-9">
+
+    <div class="clear mar-bt-15">
+      <div class="fl" (click)="onButtonGroupClick($event)">
+          <button class="btn active" type="button" (click)="getHistory(vShow,0)">Today</button>&nbsp;
+          <button class="btn" type="button"  (click)="getHistory(vShow,-1)">Previous 7 Days</button>
+      </div>
+      <div class="fr" (click)="onButtonGroupClick($event)">
+          <button class="btn" type="button" (click)="vShow=0;getHistory(0,dayFor)">In</button>&nbsp;
+          <button class="btn" type="button" (click)="vShow=1;getHistory(1,dayFor)">Out</button>&nbsp;
+          <button class="btn active" type="button" (click)="vShow=-1;getHistory(-1,dayFor)">Both</button>
+      </div>
+    </div>
+
+    <div class="item clear" [ngClass]="(x.status==0?'iIn':'iOut')" *ngFor="let x of history" >
+      <div class="diTable">
+        <div class="diCell itemIcon"><img src="../../../assets/images/scooter.png" alt=""></div>
+        <div class="diCell h1">{{x.vehicle_info.color + ' ' + x.vehicle_info.model + ' ' + x.vehicle_info.number}}</div>
+        <div class="diCell hData">{{x.vehicle_info.flat_info.name}}</div>
+        <div class="diCell hData">{{x.vehicle_info.tower_info.title}} - {{x.vehicle_info.flat_info.flat_address}}</div>
+        <div class="diCell hData">{{(x.status==0?'In':'Out')}} at: {{dateString(x.createdAt,1)}}</div>
+      </div>
+    </div>
+    <!-- <div class="item iIn clear">
+      <div class="diTable">
+        <div class="diCell itemIcon"><img src="../../../assets/images/scooter.png" alt=""></div>
+        <div class="diCell h1">DL 2CD 5175</div>
+        <div class="diCell hData">Mohit Bhalla</div>
+        <div class="diCell hData">G - 1101</div>
+        <div class="diCell hData">In at: 09:00 AM</div>
+      </div>
+    </div>
+    <div class="item iIn clear">
+      <div class="diTable">
+        <div class="diCell itemIcon"><img src="../../../assets/images/car.png" alt=""></div>
+        <div class="diCell h1">DL 2CD 5175</div>
+        <div class="diCell hData">Mohit Bhalla</div>
+        <div class="diCell hData">G - 1101</div>
+        <div class="diCell hData">In at: 09:00 AM</div>
+      </div>
+    </div>
+    <div class="item iIn clear">
+      <div class="diTable">
+        <div class="diCell itemIcon"><img src="../../../assets/images/scooter.png" alt=""></div>
+        <div class="diCell h1">DL 2CD 5175</div>
+        <div class="diCell hData">Mohit Bhalla</div>
+        <div class="diCell hData">G - 1101</div>
+        <div class="diCell hData">In at: 09:00 AM</div>
+      </div>
+    </div>
+    <div class="item iOut clear">
+      <div class="diTable">
+        <div class="diCell itemIcon"><img src="../../../assets/images/car.png" alt=""></div>
+        <div class="diCell h1">DL 2CD 5175</div>
+        <div class="diCell hData">Mohit Bhalla</div>
+        <div class="diCell hData">G - 1101</div>
+        <div class="diCell hData">Out at: 09:00 AM</div>
+      </div>
+    </div>
+    <div class="item iOut clear">
+      <div class="diTable">
+        <div class="diCell itemIcon"><img src="../../../assets/images/car.png" alt=""></div>
+        <div class="diCell h1">DL 2CD 5175</div>
+        <div class="diCell hData">Mohit Bhalla</div>
+        <div class="diCell hData">G - 1101</div>
+        <div class="diCell hData">Out at: 09:00 AM</div>
+      </div>
+    </div>
+    <div class="item iIn clear">
+      <div class="diTable">
+        <div class="diCell itemIcon"><img src="../../../assets/images/car.png" alt=""></div>
+        <div class="diCell h1">DL 2CD 5175</div>
+        <div class="diCell hData">Mohit Bhalla</div>
+        <div class="diCell hData">G - 1101</div>
+        <div class="diCell hData">In at: 09:00 AM</div>
+      </div>
+    </div> -->
+  </div>
+</div>

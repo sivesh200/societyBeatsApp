@@ -1,0 +1,384 @@
+<p-table [value]="tickets">
+    <ng-template pTemplate="header">
+        <tr>
+            <th class="col-w-80px">Category</th>
+            <th class="col-w-90px">Request ID</th>
+            <th>Current Slot</th>
+            <th>Created On</th>
+            <th class="col-w-60px tc">Flat</th>
+            <th class="col-w-60px tc">Tower</th>
+            <th class="col-w-60px tc">Floor</th>
+            <th>Complainee</th>
+            <th>Complaint</th>
+            <th class="col-w-80px tc">Assign</th>
+        </tr>
+    </ng-template>
+    <ng-template pTemplate="body" let-t>
+        <tr>
+            <td>{{t.category_id}}</td>
+            <td>{{t.id}}</td>
+            <td>{{t.status}}</td>
+            <td>{{t.createdAt}}</td>
+            <td class="tc">Flat-3A</td>
+            <td class="tc">Tower-1</td>
+            <td class="tc">3rd Floor</td>
+            <td>Demo User</td>
+            <td>{{t.title}}</td>
+            <td class="tc action-td"><a href="javascript:void(0)" (click)="openModal(template)"><i class="pi pi-check"></i></a></td>
+        </tr>
+    </ng-template>
+</p-table>
+
+<ng-template #template>
+    <div class="modal-header">
+        <h4 class="modal-title">Assignation</h4>
+        <button type="button" class="close pull-right" aria-label="Close" (click)="modalRef.hide()"><span aria-hidden="true">&times;</span></button>
+    </div>
+    <div class="modal-body rs-accordian">
+        <div class="ui-inputgroup mar-bt-20 pos-relative">
+            <input type="text" pInputText placeholder="Search by Name">   
+            <button pButton type="button" icon="pi pi-search" class="ui-button-transparent"></button>      
+        </div>
+        <p-accordion>
+            <div class="clear">
+                <div class="rs-checkbox"><p-checkbox></p-checkbox></div>
+                <p-accordionTab class="rs-serItem">
+                    <p-header>Ram Niwas Kushwaha <div class="rs-badge">4</div></p-header>
+                    <div class="ui-table">
+                        <table>
+                            <thead class="ui-table-thead">
+                                <tr>
+                                    <th>Ticket ID</th>
+                                    <th>Slot</th>
+                                    <th>Tower</th>
+                                    <th>Floor</th>
+                                    <th>Flat</th>
+                                </tr>
+                            </thead>
+                            <tbody class="ui-table-tbody">
+                                <tr>
+                                    <td>E2345</td>
+                                    <td>12:00 - 01:00 PM</td>
+                                    <td>G</td>
+                                    <td>12</td>
+                                    <td>1204</td>
+                                </tr>
+                                <tr>
+                                    <td>E3024</td>
+                                    <td>01:00 - 02:00 PM</td>
+                                    <td>A</td>
+                                    <td>5</td>
+                                    <td>505</td>
+                                </tr>
+                                <tr>
+                                    <td>E8954</td>
+                                    <td>02:00 - 03:00 PM</td>
+                                    <td>F</td>
+                                    <td>8</td>
+                                    <td>802</td>
+                                </tr>
+                                <tr>
+                                    <td>E2345</td>
+                                    <td>03:00 - 04:00 PM</td>
+                                    <td>E</td>
+                                    <td>2</td>
+                                    <td>204</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </p-accordionTab>
+            </div>
+            <div class="clear">
+                <div class="rs-checkbox"><p-checkbox></p-checkbox></div>
+                <p-accordionTab class="rs-serItem">
+                    <p-header>Mathura Das Pandey <div class="rs-badge">2</div></p-header>
+                    <div class="ui-table">
+                            <table>
+                                <thead class="ui-table-thead">
+                                    <tr>
+                                        <th>Ticket ID</th>
+                                        <th>Slot</th>
+                                        <th>Tower</th>
+                                        <th>Floor</th>
+                                        <th>Flat</th>
+                                    </tr>
+                                </thead>
+                                <tbody class="ui-table-tbody">
+                                    <tr>
+                                        <td>E8954</td>
+                                        <td>02:00 - 03:00 PM</td>
+                                        <td>F</td>
+                                        <td>8</td>
+                                        <td>802</td>
+                                    </tr>
+                                    <tr>
+                                        <td>E2345</td>
+                                        <td>03:00 - 04:00 PM</td>
+                                        <td>E</td>
+                                        <td>2</td>
+                                        <td>204</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                </p-accordionTab>
+            </div>
+            <div class="clear">
+                <div class="rs-checkbox"><p-checkbox></p-checkbox></div>
+                <p-accordionTab class="rs-serItem">
+                    <p-header>Ram Niwas Kushwaha <div class="rs-badge">4</div></p-header>
+                    <div class="ui-table">
+                        <table>
+                            <thead class="ui-table-thead">
+                                <tr>
+                                    <th>Ticket ID</th>
+                                    <th>Slot</th>
+                                    <th>Tower</th>
+                                    <th>Floor</th>
+                                    <th>Flat</th>
+                                </tr>
+                            </thead>
+                            <tbody class="ui-table-tbody">
+                                <tr>
+                                    <td>E2345</td>
+                                    <td>12:00 - 01:00 PM</td>
+                                    <td>G</td>
+                                    <td>12</td>
+                                    <td>1204</td>
+                                </tr>
+                                <tr>
+                                    <td>E3024</td>
+                                    <td>01:00 - 02:00 PM</td>
+                                    <td>A</td>
+                                    <td>5</td>
+                                    <td>505</td>
+                                </tr>
+                                <tr>
+                                    <td>E8954</td>
+                                    <td>02:00 - 03:00 PM</td>
+                                    <td>F</td>
+                                    <td>8</td>
+                                    <td>802</td>
+                                </tr>
+                                <tr>
+                                    <td>E2345</td>
+                                    <td>03:00 - 04:00 PM</td>
+                                    <td>E</td>
+                                    <td>2</td>
+                                    <td>204</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </p-accordionTab>
+            </div>
+            <div class="clear">
+                <div class="rs-checkbox"><p-checkbox></p-checkbox></div>
+                <p-accordionTab class="rs-serItem">
+                    <p-header>Mathura Das Pandey <div class="rs-badge">2</div></p-header>
+                    <div class="ui-table">
+                            <table>
+                                <thead class="ui-table-thead">
+                                    <tr>
+                                        <th>Ticket ID</th>
+                                        <th>Slot</th>
+                                        <th>Tower</th>
+                                        <th>Floor</th>
+                                        <th>Flat</th>
+                                    </tr>
+                                </thead>
+                                <tbody class="ui-table-tbody">
+                                    <tr>
+                                        <td>E8954</td>
+                                        <td>02:00 - 03:00 PM</td>
+                                        <td>F</td>
+                                        <td>8</td>
+                                        <td>802</td>
+                                    </tr>
+                                    <tr>
+                                        <td>E2345</td>
+                                        <td>03:00 - 04:00 PM</td>
+                                        <td>E</td>
+                                        <td>2</td>
+                                        <td>204</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                </p-accordionTab>
+            </div>
+            <div class="clear">
+                <div class="rs-checkbox"><p-checkbox></p-checkbox></div>
+                <p-accordionTab class="rs-serItem">
+                    <p-header>Ram Niwas Kushwaha <div class="rs-badge">4</div></p-header>
+                    <div class="ui-table">
+                        <table>
+                            <thead class="ui-table-thead">
+                                <tr>
+                                    <th>Ticket ID</th>
+                                    <th>Slot</th>
+                                    <th>Tower</th>
+                                    <th>Floor</th>
+                                    <th>Flat</th>
+                                </tr>
+                            </thead>
+                            <tbody class="ui-table-tbody">
+                                <tr>
+                                    <td>E2345</td>
+                                    <td>12:00 - 01:00 PM</td>
+                                    <td>G</td>
+                                    <td>12</td>
+                                    <td>1204</td>
+                                </tr>
+                                <tr>
+                                    <td>E3024</td>
+                                    <td>01:00 - 02:00 PM</td>
+                                    <td>A</td>
+                                    <td>5</td>
+                                    <td>505</td>
+                                </tr>
+                                <tr>
+                                    <td>E8954</td>
+                                    <td>02:00 - 03:00 PM</td>
+                                    <td>F</td>
+                                    <td>8</td>
+                                    <td>802</td>
+                                </tr>
+                                <tr>
+                                    <td>E2345</td>
+                                    <td>03:00 - 04:00 PM</td>
+                                    <td>E</td>
+                                    <td>2</td>
+                                    <td>204</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </p-accordionTab>
+            </div>
+            <div class="clear">
+                <div class="rs-checkbox"><p-checkbox></p-checkbox></div>
+                <p-accordionTab class="rs-serItem">
+                    <p-header>Mathura Das Pandey <div class="rs-badge">2</div></p-header>
+                    <div class="ui-table">
+                            <table>
+                                <thead class="ui-table-thead">
+                                    <tr>
+                                        <th>Ticket ID</th>
+                                        <th>Slot</th>
+                                        <th>Tower</th>
+                                        <th>Floor</th>
+                                        <th>Flat</th>
+                                    </tr>
+                                </thead>
+                                <tbody class="ui-table-tbody">
+                                    <tr>
+                                        <td>E8954</td>
+                                        <td>02:00 - 03:00 PM</td>
+                                        <td>F</td>
+                                        <td>8</td>
+                                        <td>802</td>
+                                    </tr>
+                                    <tr>
+                                        <td>E2345</td>
+                                        <td>03:00 - 04:00 PM</td>
+                                        <td>E</td>
+                                        <td>2</td>
+                                        <td>204</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                </p-accordionTab>
+            </div>
+            <div class="clear">
+                <div class="rs-checkbox"><p-checkbox></p-checkbox></div>
+                <p-accordionTab class="rs-serItem">
+                    <p-header>Ram Niwas Kushwaha <div class="rs-badge">4</div></p-header>
+                    <div class="ui-table">
+                        <table>
+                            <thead class="ui-table-thead">
+                                <tr>
+                                    <th>Ticket ID</th>
+                                    <th>Slot</th>
+                                    <th>Tower</th>
+                                    <th>Floor</th>
+                                    <th>Flat</th>
+                                </tr>
+                            </thead>
+                            <tbody class="ui-table-tbody">
+                                <tr>
+                                    <td>E2345</td>
+                                    <td>12:00 - 01:00 PM</td>
+                                    <td>G</td>
+                                    <td>12</td>
+                                    <td>1204</td>
+                                </tr>
+                                <tr>
+                                    <td>E3024</td>
+                                    <td>01:00 - 02:00 PM</td>
+                                    <td>A</td>
+                                    <td>5</td>
+                                    <td>505</td>
+                                </tr>
+                                <tr>
+                                    <td>E8954</td>
+                                    <td>02:00 - 03:00 PM</td>
+                                    <td>F</td>
+                                    <td>8</td>
+                                    <td>802</td>
+                                </tr>
+                                <tr>
+                                    <td>E2345</td>
+                                    <td>03:00 - 04:00 PM</td>
+                                    <td>E</td>
+                                    <td>2</td>
+                                    <td>204</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </p-accordionTab>
+            </div>
+            <div class="clear">
+                <div class="rs-checkbox"><p-checkbox></p-checkbox></div>
+                <p-accordionTab class="rs-serItem">
+                    <p-header>Mathura Das Pandey <div class="rs-badge">2</div></p-header>
+                    <div class="ui-table">
+                            <table>
+                                <thead class="ui-table-thead">
+                                    <tr>
+                                        <th>Ticket ID</th>
+                                        <th>Slot</th>
+                                        <th>Tower</th>
+                                        <th>Floor</th>
+                                        <th>Flat</th>
+                                    </tr>
+                                </thead>
+                                <tbody class="ui-table-tbody">
+                                    <tr>
+                                        <td>E8954</td>
+                                        <td>02:00 - 03:00 PM</td>
+                                        <td>F</td>
+                                        <td>8</td>
+                                        <td>802</td>
+                                    </tr>
+                                    <tr>
+                                        <td>E2345</td>
+                                        <td>03:00 - 04:00 PM</td>
+                                        <td>E</td>
+                                        <td>2</td>
+                                        <td>204</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                </p-accordionTab>
+            </div>
+        </p-accordion>
+    </div>
+    <div class="modal-footer">
+        <button pButton type="button" class="ui-button-rounded ttU minBtn" label="Assign" (click)="modalRef.hide()"></button>
+    </div>
+</ng-template>
